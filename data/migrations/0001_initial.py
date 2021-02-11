@@ -7,26 +7,33 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='GeoLocationData',
+            name="GeoLocationData",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ip', models.CharField(max_length=15)),
-                ('ip_type', models.CharField(max_length=4)),
-                ('continent_code', models.CharField(max_length=2)),
-                ('continent_name', models.CharField(max_length=15)),
-                ('country_code', models.CharField(max_length=2)),
-                ('country_name', models.CharField(max_length=30)),
-                ('region_code', models.CharField(max_length=2)),
-                ('region_name', models.CharField(max_length=40)),
-                ('city', models.CharField(max_length=50)),
-                ('zip', models.CharField(max_length=7)),
-                ('latitude', models.FloatField()),
-                ('longitude', models.FloatField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("ip", models.CharField(max_length=15)),
+                ("ip_type", models.CharField(max_length=4)),
+                ("continent_code", models.CharField(max_length=2)),
+                ("continent_name", models.CharField(max_length=15)),
+                ("country_code", models.CharField(max_length=2)),
+                ("country_name", models.CharField(max_length=30)),
+                ("region_code", models.CharField(max_length=2)),
+                ("region_name", models.CharField(max_length=40)),
+                ("city", models.CharField(max_length=50)),
+                ("zip", models.CharField(max_length=7)),
+                ("latitude", models.FloatField()),
+                ("longitude", models.FloatField()),
             ],
         ),
     ]

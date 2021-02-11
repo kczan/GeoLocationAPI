@@ -8,6 +8,9 @@ repos:
     rev: v2.2.3
     hooks:
     - id: flake8
+      args:
+          - "--max-line-length=88"
+      exclude: GeoLocatingAPI/settings.py
     - id: debug-statements
 
 default_language_version:

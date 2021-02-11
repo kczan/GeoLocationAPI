@@ -6,43 +6,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('data', '0002_auto_20210210_1829'),
+        ("data", "0002_auto_20210210_1829"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='city',
+            model_name="geolocationdata",
+            name="city",
             field=models.CharField(max_length=80),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='country_code',
+            model_name="geolocationdata",
+            name="country_code",
             field=models.CharField(max_length=5),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='country_name',
+            model_name="geolocationdata",
+            name="country_name",
             field=models.CharField(max_length=50),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='ip',
+            model_name="geolocationdata",
+            name="ip",
             field=models.CharField(max_length=15, unique=True),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='region_code',
+            model_name="geolocationdata",
+            name="region_code",
             field=models.CharField(max_length=5),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='type',
+            model_name="geolocationdata",
+            name="type",
             field=models.CharField(max_length=10),
         ),
         migrations.AlterField(
-            model_name='geolocationdata',
-            name='zip',
+            model_name="geolocationdata",
+            name="zip",
             field=models.CharField(max_length=10),
         ),
     ]
