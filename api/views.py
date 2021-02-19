@@ -18,6 +18,8 @@ class GeoLocationDataViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         ip_address = request.META.get("REMOTE_ADDR")
+        print(ip_address)
+        print(request.META.get("HTTP_X_FORWARDED_FOR"))
         try:
             location = geo_lookup.get_location(ip_address)
             if location is None:
