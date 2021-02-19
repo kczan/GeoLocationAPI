@@ -17,9 +17,7 @@ class GeoLocationDataViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def create(self, request, *args, **kwargs):
-        ip_address = request.META.get("REMOTE_ADDR")
-        print(ip_address)
-        print(request.META.get("HTTP_X_FORWARDED_FOR"))
+        ip_address = self._get_client_ip(request)
         try:
             location = geo_lookup.get_location(ip_address)
             if location is None:
@@ -45,7 +43,7 @@ class GeoLocationDataViewSet(ModelViewSet):
             )
 
     def list(self, request, *args, **kwargs):
-        ip_address = request.META.get("REMOTE_ADDR")
+        ip_address = self._get_client_ip(request)
         try:
             obj = GeoLocationData.objects.get(ip=ip_address)
             serializer = self.serializer_class(obj)
@@ -57,7 +55,7 @@ class GeoLocationDataViewSet(ModelViewSet):
             )
 
     def destroy(self, request, *args, **kwargs):
-        ip_address = request.META.get("REMOTE_ADDR")
+        ip_address = self._get_client_ip(request)
         if ip_geolocation_entry := self.queryset.filter(ip=ip_address):
             ip_geolocation_entry.delete()
             return Response(
@@ -68,3 +66,9 @@ class GeoLocationDataViewSet(ModelViewSet):
             {"Error": f"No entry in database for {ip_address}."},
             status=status.HTTP_404_NOT_FOUND,
         )
+
+    def _get_client_ip(self, request):
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            return x_forwarded_for.split(",")[0]
+        return request.META.get("REMOTE_ADDR")
